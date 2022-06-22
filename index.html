@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
             name="description"
-            content="Documentation for the Kittn API"
+            content="Documentation for the CryptoEQ Reports API"
         >
     <title>API Reference</title>
 
@@ -286,7 +286,7 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-e497a669.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-b12a2749.js"></script>
 
@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -303,12 +303,9 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+      <img src="images/logo-24370ec9.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -322,25 +319,40 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#price-reports" class="toc-h1 toc-link" data-title="Price Reports">Price Reports</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#get-all-price-reports" class="toc-h2 toc-link" data-title="Get All Price Reports">Get All Price Reports</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#get-a-specific-price-report" class="toc-h2 toc-link" data-title="Get a Specific Price Report">Get a Specific Price Report</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#core-reports" class="toc-h1 toc-link" data-title="Core Reports">Core Reports</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-core-reports" class="toc-h2 toc-link" data-title="Get all CORE Reports">Get all CORE Reports</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-single-core-report" class="toc-h2 toc-link" data-title="Get a single CORE Report">Get a single CORE Report</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#sentiment-reports" class="toc-h1 toc-link" data-title="Sentiment Reports">Sentiment Reports</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-sentiment-reports" class="toc-h2 toc-link" data-title="Get all Sentiment Reports">Get all Sentiment Reports</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-single-sentiment-report" class="toc-h2 toc-link" data-title="Get a single Sentiment Report">Get a single Sentiment Report</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -348,133 +360,108 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<p>Welcome to the CryptoEQ Reports API.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://ceq-reports-api.herokuapp.com/"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"x-api: YOUR_API_KEY"</span>
 </code></pre></div>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code>YOUR_API_KEY</code> with your API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>CryptoEQ uses API keys to allow access to the API.</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>CryptoEQ expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code>Authorization: meowmeowmeow</code></p>
+<p><code>x-api-key: YOUR_API_KEY</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>YOUR_API_KEY</code> with your personal API key.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
+<h1 id='price-reports'>Price Reports</h1><h2 id='get-all-price-reports'>Get All Price Reports</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://ceq-reports-api.herokuapp.com/price-reports"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"x-api-key: YOUR_API_KEY"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c732b7f4b20c45aeb49d63f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cryptoeq-db.s3.amazonaws.com/16558499261041876703"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"raw"</span><span class="p">:</span><span class="w"> </span><span class="mf">1121.64</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"formatted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$ 1,121.64"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"volume24HrUSD"</span><span class="p">:</span><span class="w"> </span><span class="mf">4933169654.6794195</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marketCapRaw"</span><span class="p">:</span><span class="w"> </span><span class="mf">135975009750.98589</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marketCap"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LRG"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"signals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"investor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Strong Buy"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"investorAlert"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">        The Ethereum Investor Signal changed to a Buy as of June 22, 2022 12:37 AM. </span><span class="se">\n</span><span class="s2">        A Buy signal indicates that the coin is oversold."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dayTrader"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Strong Buy"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dayTraderAlert"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">        The Ethereum Day Trader Signal changed to a Strong Buy as of June 22, 2022 12:37 AM. </span><span class="se">\n</span><span class="s2">        A Strong Buy signal indicates that the coin is very oversold."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c732c664b20c45aeb49d640"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cryptoeq-db.s3.amazonaws.com/16558327092896220515"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"raw"</span><span class="p">:</span><span class="w"> </span><span class="mf">20681.5</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"formatted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$ 20,681.5"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"volume24HrUSD"</span><span class="p">:</span><span class="w"> </span><span class="mf">8307843632.120352</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marketCapRaw"</span><span class="p">:</span><span class="w"> </span><span class="mf">394425676137.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marketCap"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LRG"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"signals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"investor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hold"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"investorAlert"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">        The Bitcoin Investor Signal changed to a Hold as of June 22, 2022 12:37 AM. </span><span class="se">\n</span><span class="s2">        A Hold signal indicates that the coin is in a no trade pattern."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dayTrader"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Strong Buy"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dayTraderAlert"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">        The Bitcoin Day Trader Signal changed to a Strong Buy as of June 22, 2022 12:37 AM. </span><span class="se">\n</span><span class="s2">        A Strong Buy signal indicates that the coin is very oversold."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint retrieves all Price Reports.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<p><code>GET https://ceq-reports-api.herokuapp.com/price-reports</code></p>
+<h2 id='get-a-specific-price-report'>Get a Specific Price Report</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://ceq-reports-api.herokuapp.com/price-reports/eth"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"x-api-key: YOUR_API_KEY"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c732b7f4b20c45aeb49d63f"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cryptoeq-db.s3.amazonaws.com/16558499261041876703"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"raw"</span><span class="p">:</span><span class="w"> </span><span class="mf">1116.44</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"formatted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$ 1,116.44"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"volume24HrUSD"</span><span class="p">:</span><span class="w"> </span><span class="mf">4971782039.053005</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"marketCapRaw"</span><span class="p">:</span><span class="w"> </span><span class="mf">135344620276.01607</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"marketCap"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LRG"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"signals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"investor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Strong Buy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"investorAlert"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">        The Ethereum Investor Signal changed to a Buy as of June 22, 2022 12:57 AM. </span><span class="se">\n</span><span class="s2">        A Buy signal indicates that the coin is oversold."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dayTrader"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Strong Buy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dayTraderAlert"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">        The Ethereum Day Trader Signal changed to a Strong Buy as of June 22, 2022 12:57 AM. </span><span class="se">\n</span><span class="s2">        A Strong Buy signal indicates that the coin is very oversold."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<p>This endpoint retrieves a specific Price Report.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p><code>GET https://ceq-reports-api.herokuapp.com/price-reports/&lt;TICKER&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -483,37 +470,125 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>TICKER</td>
+<td>The ticker of the coin to get</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<h1 id='core-reports'>Core Reports</h1><h2 id='get-all-core-reports'>Get all CORE Reports</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://ceq-reports-api.herokuapp.com/core-reports"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"x-api-key: YOUR_API_KEY"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e5283357-338b-425f-8cb0-0597e45f91ec"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CORE Report: XRP (Abridged)"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feb68dbd-d5ac-4383-a27b-d7cea87e3f59"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CORE Report: Uniswap (Abridged)"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"581fa578-6067-4c53-8f92-77d09e548637"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CORE Report: REP (Abridged)"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves a list of CORE Reports.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://ceq-reports-api.herokuapp.com/core-reports</code></p>
+<h2 id='get-a-single-core-report'>Get a single CORE Report</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://ceq-reports-api.herokuapp.com/core-reports/&lt;ID&gt;"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"x-api-key: YOUR_API_KEY"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+ </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e5283357-338b-425f-8cb0-0597e45f91ec"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CORE Report: XRP (Abridged)"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"abridged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"importantLinks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;ul&gt;&lt;li&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">https://www.google.com/url?q=https://ripple.com/files/ripple_consensus_whitepaper.pdf&amp;amp;sa=D&amp;amp;ust=1591486264813000</span><span class="se">\"</span><span class="s2">&gt;Whitepaper&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">https://www.google.com/url?q=https://ripple.com/&amp;amp;sa=D&amp;amp;ust=1591486264813000</span><span class="se">\"</span><span class="s2">&gt;Website&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">https://www.google.com/url?q=https://github.com/ripple&amp;amp;sa=D&amp;amp;ust=1591486264814000</span><span class="se">\"</span><span class="s2">&gt;Github&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">https://www.google.com/url?q=https://xrpscan.com/&amp;amp;sa=D&amp;amp;ust=1591486264814000</span><span class="se">\"</span><span class="s2">&gt;Block explorer&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">https://www.google.com/url?q=https://xrpcharts.ripple.com/%23/graph&amp;amp;sa=D&amp;amp;ust=1591486264814000</span><span class="se">\"</span><span class="s2">&gt;Charts&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">https://www.google.com/url?q=https://www.reddit.com/r/Ripple/&amp;amp;sa=D&amp;amp;ust=1591486264814000</span><span class="se">\"</span><span class="s2">&gt;Reddit&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">https://www.google.com/url?q=https://xrpcommunity.blog/&amp;amp;sa=D&amp;amp;ust=1591486264814000</span><span class="se">\"</span><span class="s2">&gt;Blog&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">https://www.google.com/url?q=https://cointelegraph.com/ripple-101/ripple-xrp-wallets-for-beginners%23desktopweb-wallets&amp;amp;sa=D&amp;amp;ust=1591486264815000</span><span class="se">\"</span><span class="s2">&gt;Wallet&lt;/a&gt;-&amp;nbsp;&lt;a href=</span><span class="se">\"</span><span class="s2">https://www.google.com/url?q=https://shop.ledger.com/products/ledger-nano-s?r%3D4d117270ceaf%26tracker%3DMY_TRACKER&amp;amp;sa=D&amp;amp;ust=1591486264815000</span><span class="se">\"</span><span class="s2">&gt;Ledger&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href=</span><span class="se">\"</span><span class="s2">https://www.google.com/url?q=https://trezor.io/?offer_id%3D12%26aff_id%3D2220&amp;amp;sa=D&amp;amp;ust=1591486264815000</span><span class="se">\"</span><span class="s2">&gt;TREZOR&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Where to buy?&amp;nbsp;&lt;a href=</span><span class="se">\"</span><span class="s2">https://www.google.com/url?q=http://coinbase-consumer.sjv.io/Anym7&amp;amp;sa=D&amp;amp;ust=1591486264815000</span><span class="se">\"</span><span class="s2">&gt;Coinbase&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"analysts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CryptoEQ Fundamentals Team"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"basic_html"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"processed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CryptoEQ Fundamentals Team"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"authors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cameron Pick"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"basic_html"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"processed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cameron Pick"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"economics"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"networkEffect"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"overview"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"pubLocation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Houston, TX"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"regulation"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"roadmap"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"strenghts"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"team"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"technology"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"userExp"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"vulnerables"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"weaknesses"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRP"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"useCase"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-06T22:32:53+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"changed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-28T17:26:02+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/xrp-abridged"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deficient"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ratingDesc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRP received a Deficient CORE Rating. "</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
+<p>This endpoint retrieves a single CORE Report.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://ceq-reports-api.herokuapp.com/core-reports/&lt;ID&gt;</code></p>
+<h1 id='sentiment-reports'>Sentiment Reports</h1><h2 id='get-all-sentiment-reports'>Get all Sentiment Reports</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://ceq-reports-api.herokuapp.com/sentiment-reports"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"x-api-key: YOUR_API_KEY"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sentiment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"positive"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sentimentDesc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The current Sentiment for Ethereum is positive based on recent news and discussions on social media."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sentiment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"positive"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sentimentDesc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The current Sentiment for Bitcoin is positive based on recent news and discussions on social media."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves a list of Sentiment Reports.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://ceq-reports-api.herokuapp.com/sentiment-reports</code></p>
+<h2 id='get-a-single-sentiment-report'>Get a single Sentiment Report</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://ceq-reports-api.herokuapp.com/sentiment-reports/&lt;TICKER&gt;"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"x-api-key: YOUR_API_KEY"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sentiment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"positive"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sentimentDesc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The current Sentiment for Ethereum is positive based on recent news and discussions on social media."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves a single Sentiment Report.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET https://ceq-reports-api.herokuapp.com/sentiment-reports/&lt;TICKER&gt;</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -522,76 +597,37 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>TICKER</td>
+<td>The ticker of the coin to get</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
+<!-- # Errors
+
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
 
-<p>The Kittn API uses the following error codes:</p>
+The Kittn API uses the following error codes:
 
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
+
+Error Code | Meaning
+---------- | -------
+400 | Bad Request -- Your request is invalid.
+401 | Unauthorized -- Your API key is wrong.
+403 | Forbidden -- The kitten requested is hidden for administrators only.
+404 | Not Found -- The specified kitten could not be found.
+405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
+406 | Not Acceptable -- You requested a format that isn't json.
+410 | Gone -- The kitten requested has been removed from our servers.
+418 | I'm a teapot.
+429 | Too Many Requests -- You're requesting too many kittens! Slow down!
+500 | Internal Server Error -- We had a problem with our server. Try again later.
+503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later. -->
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
