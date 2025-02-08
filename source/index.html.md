@@ -31,7 +31,7 @@ Welcome to the CryptoEQ Reports API.
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "https://ceq-reports-api.herokuapp.com/" \
-  -H "x-api: YOUR_API_KEY"
+  -H "x-api-key: YOUR_API_KEY"
 ```
 
 > Make sure to replace `YOUR_API_KEY` with your API key.
